@@ -7,9 +7,11 @@ let isRunning = false;
 // Récupération des boutons et du libellé
 const startButton = document.querySelector('button:nth-of-type(1)');
 const pauseButton = document.querySelector('button:nth-of-type(2)');
-const stopButton = document.querySelector('button:nth-of-type(3)');
 const libelleTravail = document.getElementById("travail");
 const libellePause = document.getElementById("pause");
+const boutonEnvoyer = document.getElementById("submit");
+const tempTravail = document.getElementById("tempTravail");
+const tempPause = document.getElementById("tempPause");
 
 libellePause.style.visibility = 'hidden';
 pauseButton.setAttribute('disabled', 'true');
@@ -24,9 +26,6 @@ function updateTimerDisplay() {
 function startOrResetTimer() {
   if (isRunning) {
     clearInterval(timer);
-    minutes = 0;
-    seconds = 2;
-    updateTimerDisplay();
     isRunning = false;
     startButton.textContent = "Start";
   } else {
@@ -44,16 +43,15 @@ function startOrResetTimer() {
       }
       updateTimerDisplay();
     }, 1000);
-
-    isRunning = true;
-    startButton.textContent = "Reset";
   }
 
-  // Activer ou désactiver les boutons en conséquence
-  startButton.removeAttribute('disabled');
-  pauseButton.removeAttribute('disabled');
-  stopButton.removeAttribute('disabled');
+    startButton.textContent = "Reset";
+      // Activer ou désactiver les boutons en conséquence
+    pauseButton.removeAttribute('disabled');
+    startButton.removeEventListener('click', startOrResetTimer);
+    startButton.addEventListener('click', stopTimer);
 }
+
 
 // Fonction pour mettre en pause le chronomètre
 function pauseTimer() {
@@ -61,6 +59,7 @@ function pauseTimer() {
 
   // Activer le bouton "Start" et désactiver le bouton "Pause"
   startButton.textContent = "Start";
+  startButton.addEventListener('click', startOrResetTimer);
   startButton.removeAttribute('disabled');
   pauseButton.setAttribute('disabled', 'true');
   isRunning = false;
@@ -69,17 +68,18 @@ function pauseTimer() {
 // Fonction pour réinitialiser le chronomètre
 function stopTimer() {
   clearInterval(timer);
-  minutes = 20;
-  seconds = 0;
+  isRunning = false;
+  minutes = 0;
+  seconds = 2;
   updateTimerDisplay();
 
   // Réinitialiser le libellé du bouton
   startButton.textContent = "Start";
+  startButton.addEventListener('click', startOrResetTimer);
 
   // Activer le bouton "Start" et désactiver le bouton "Pause"
   startButton.removeAttribute('disabled');
   pauseButton.setAttribute('disabled', 'true');
-  isRunning = false;
 }
 
 // Fonction pour passer entre le temps de pause et le temps de travail
@@ -101,10 +101,11 @@ function switchTimer() {
   }
 }
 
+
+
 // Écouteurs d'événements pour les boutons
 startButton.addEventListener('click', startOrResetTimer);
 pauseButton.addEventListener('click', pauseTimer);
-stopButton.addEventListener('click', stopTimer);
 
 // Appel initial pour afficher le temps initial
 updateTimerDisplay();
