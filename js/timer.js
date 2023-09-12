@@ -102,6 +102,7 @@ function switchTimer() {
 }
 
 
+
 // Écouteurs d'événements pour les boutons
 startButton.addEventListener('click', startOrResetTimer);
 pauseButton.addEventListener('click', pauseTimer);
