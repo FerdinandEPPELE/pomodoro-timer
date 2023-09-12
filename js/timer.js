@@ -95,13 +95,13 @@ function switchTimer() {
     libelleTravail.style.visibility = 'hidden';
     libellePause.style.visibility = 'visible';
     minutes = choixMinutesP;
-    seconds = 2;
+    seconds = 0;
     startOrResetTimer();
   } else { 
       libelleTravail.style.visibility = 'visible';
       libellePause.style.visibility = 'hidden';
       minutes = choixMinutesT;
-      seconds = 2 ;
+      seconds = 0;
       startOrResetTimer();
     
   }
