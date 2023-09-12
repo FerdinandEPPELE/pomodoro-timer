@@ -17,6 +17,20 @@
         <text id="travail">Travail</text>
         <text id="pause">Pause</text>
       </div>
+      <br>
+      <div>
+        <label for="tempsTravail">Temps de travail désirée (en minute) :</label>
+        <input type="number" min="0" id="tempsTravail" name="tempsTravail" required maxlength="8" size="5">
+      </div>
+      <br>
+      <div>
+        <label for="tempsPause">Temps de pause désirée (en minute) :</label>
+        <input type="number" min="0" id="tempsPause" name="tempsPause" required maxlength="8" size="5">
+      </div>
+      <br>
+      <div>
+        <button type="button" id="confirm" onclick="changeValue();">Envoyer</button>
+      </div>
     </main>
     <script src="./js/timer.js"></script>
   </body>
