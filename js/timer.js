@@ -9,9 +9,9 @@ const startButton = document.querySelector('button:nth-of-type(1)');
 const pauseButton = document.querySelector('button:nth-of-type(2)');
 const libelleTravail = document.getElementById("travail");
 const libellePause = document.getElementById("pause");
-const boutonEnvoyer = document.getElementById("submit");
-const tempTravail = document.getElementById("tempTravail");
-const tempPause = document.getElementById("tempPause");
+
+const choixMinutesT = document.getElementById('tempsTravail').value;
+const choixMinutesP = document.getElementById('tempsPause').value;
 
 libellePause.style.visibility = 'hidden';
 pauseButton.setAttribute('disabled', 'true');
@@ -84,28 +84,47 @@ function stopTimer() {
 
 // Fonction pour passer entre le temps de pause et le temps de travail
 function switchTimer() {
+
+  const choixMinutesT = document.getElementById('tempsTravail').value;
+  const choixMinutesP = document.getElementById('tempsPause').value;
+
+  console.log(choixMinutesT);
+  console.log(choixMinutesP);
+
   if (minutes == 0 && seconds == 0 && libellePause.style.visibility == 'hidden') {
     libelleTravail.style.visibility = 'hidden';
     libellePause.style.visibility = 'visible';
-    minutes = 0;
-    seconds = 2;
+    minutes = choixMinutesP;
+    seconds = 0;
     startOrResetTimer();
-  } else {
-    if (minutes == 0 && seconds == 0 && libelleTravail.style.visibility == 'hidden') {
+  } else { 
       libelleTravail.style.visibility = 'visible';
       libellePause.style.visibility = 'hidden';
-      minutes = 0;
-      seconds = 2;
+      minutes = choixMinutesT;
+      seconds = 0;
       startOrResetTimer();
-    }
+    
   }
 }
 
+//Fonction pour permettre à l'utilisateur de choisir les minutes de travail et de pause qu'il veut.
+function changeValue() {
+
+  const choixMinutesT = document.getElementById('tempsTravail').value;
+  const choixMinutesP = document.getElementById('tempsPause').value;
+
+  alert(`Choix minutes travail : ${choixMinutesT}\nChoix minutes repos : ${choixMinutesP}`);
+
+  console.log(choixMinutesT);
+  console.log(choixMinutesP);
+
+}
 
 
 // Écouteurs d'événements pour les boutons
 startButton.addEventListener('click', startOrResetTimer);
 pauseButton.addEventListener('click', pauseTimer);
+
 
 // Appel initial pour afficher le temps initial
 updateTimerDisplay();
