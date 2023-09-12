@@ -11,9 +11,27 @@
       <div class="box">
         <button>Start</button>
         <button>Pause</button>
-        <button>Stop</button>
       </div>
       <div id="timer-display">20:00</div>
+      <div>
+        <text id="travail">Travail</text>
+        <text id="pause">Pause</text>
+      </div>
+      <form id="monFormulaire">
+        <div>
+        <label for="tempsTravail">Temps de travail désirée () :</label>
+        <input type="text" id="tempTravail" name="tempTravail" required maxlength="8" size="5">
+      </div>
+      <br>
+      <div>
+        <label for="tempsPause">Temps de pause désirée () :</label>
+        <input type="text" id="tempPause" name="tempPause" required maxlength="8" size="5">
+      </div>
+      <br>
+      <div>
+        <input type="submit" id="submit">
+      </div>
+    </form>
     </main>
     <script src="./js/timer.js"></script>
   </body>
