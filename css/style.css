@@ -1,0 +1,74 @@
+/* Réinitialisation des styles par défaut */
+body, h1, h2, p {
+    margin-top: 10%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style du corps de la page */
+body {
+    background-color: rgb(12, 122, 150);
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Style du titre "Pomodoro-Timer" */
+h1 {
+    font-size: 48px;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Style du Timer */
+#timer-display {
+    font-size: 36px;
+    margin-top: 250px;
+    width: 200px; /* Largeur et hauteur du cercle */
+    height: 200px;
+    line-height: 200px; /* Pour centrer le texte verticalment */
+    border-radius: 50%; /* Crée un cercle en utilisant un rayon de 50% */
+    border: 5px solid black; /* Couleur et épaisseur de la bordure */
+    margin: auto;
+}
+
+/* Style des textes "Travail" et "Pause" */
+#travail, #pause {
+    font-size: 24px;
+}
+
+
+/* Style des labels "tempsTravail" et "tempsPause" */
+label[for="tempsTravail"], label[for="tempsPause"] {
+    font-size: 24px;
+    display: block;
+    margin-top: 20px;
+}
+
+/* Style des champs d'entrée pour les minutes */
+input[type="number"] {
+    font-size: 24px;
+    width: 100px;
+    margin: 0 auto;
+    display: block;
+}
+
+
+/* Style des bouton "Pause", "Reset","Start" et "Envoyer" */
+#startandresetbutton, #pausebutton, #confirm{
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: black;
+    border: 2px solid black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: rgb(71, 202, 160);
+    box-shadow: 5px 5px 10px rgb(2, 63, 43);
+}
+
