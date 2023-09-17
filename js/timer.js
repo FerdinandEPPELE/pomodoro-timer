@@ -1,17 +1,18 @@
-// Déclaration des variables
-let timer;
-let minutes = 0;
-let seconds = 2;
-let isRunning = false;
-
 // Récupération des boutons et du libellé
-const startButton = document.querySelector('button:nth-of-type(1)');
+const startButton = document.getElementById("startandresetbutton")
 const pauseButton = document.querySelector('button:nth-of-type(2)');
 const libelleTravail = document.getElementById("travail");
 const libellePause = document.getElementById("pause");
 
 const choixMinutesT = document.getElementById('tempsTravail').value;
 const choixMinutesP = document.getElementById('tempsPause').value;
+
+// Déclaration des variables
+
+let timer;
+let minutes = 0;
+let seconds = 0;
+let isRunning = false;
 
 libellePause.style.visibility = 'hidden';
 pauseButton.setAttribute('disabled', 'true');
@@ -24,6 +25,7 @@ function updateTimerDisplay() {
 
 // Fonction pour démarrer ou réinitialiser le chronomètre
 function startOrResetTimer() {
+  const choixMinutesT = document.getElementById('tempsTravail').value;
   if (isRunning) {
     clearInterval(timer);
     isRunning = false;
@@ -59,6 +61,7 @@ function pauseTimer() {
 
   // Activer le bouton "Start" et désactiver le bouton "Pause"
   startButton.textContent = "Start";
+  startButton.removeEventListener('click', stopTimer);
   startButton.addEventListener('click', startOrResetTimer);
   startButton.removeAttribute('disabled');
   pauseButton.setAttribute('disabled', 'true');
@@ -67,10 +70,13 @@ function pauseTimer() {
 
 // Fonction pour réinitialiser le chronomètre
 function stopTimer() {
+  const choixMinutesT = document.getElementById('tempsTravail').value;
+  const choixMinutesP = document.getElementById('tempsPause').value;
+
   clearInterval(timer);
   isRunning = false;
-  minutes = 0;
-  seconds = 2;
+  minutes = choixMinutesT;
+  seconds = 0;
   updateTimerDisplay();
 
   // Réinitialiser le libellé du bouton
@@ -110,21 +116,21 @@ function switchTimer() {
 //Fonction pour permettre à l'utilisateur de choisir les minutes de travail et de pause qu'il veut.
 function changeValue() {
 
-  const choixMinutesT = document.getElementById('tempsTravail').value;
-  const choixMinutesP = document.getElementById('tempsPause').value;
+  let choixMinutesT = document.getElementById('tempsTravail').value;
+  let choixMinutesP = document.getElementById('tempsPause').value;
+
+  minutes = choixMinutesT;
+
+  updateTimerDisplay();
 
   alert(`Choix minutes travail : ${choixMinutesT}\nChoix minutes repos : ${choixMinutesP}`);
 
   console.log(choixMinutesT);
   console.log(choixMinutesP);
+  
 
 }
-
 
 // Écouteurs d'événements pour les boutons
 startButton.addEventListener('click', startOrResetTimer);
 pauseButton.addEventListener('click', pauseTimer);
-
-
-// Appel initial pour afficher le temps initial
-updateTimerDisplay();

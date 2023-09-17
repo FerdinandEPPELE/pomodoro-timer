@@ -32,9 +32,26 @@ h1 {
     margin: auto;
 }
 
-/* Style des textes "Travail" et "Pause" */
-#travail, #pause {
-    font-size: 24px;
+/* Style du textes "Travail" */
+#travail {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* Style pour le span "Pause" */
+#pause {
+    display: inline-block;
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 
 
