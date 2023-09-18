@@ -1,4 +1,5 @@
 // Récupération des boutons et du libellé
+
 const startButton = document.getElementById("startandresetbutton")
 const pauseButton = document.querySelector('button:nth-of-type(2)');
 const libelleTravail = document.getElementById("travail");
@@ -13,6 +14,9 @@ let timer;
 let minutes = 0;
 let seconds = 0;
 let isRunning = false;
+
+
+// Initialisation des variables quand on charge la page pour la première fois.
 
 libellePause.style.visibility = 'hidden';
 pauseButton.setAttribute('disabled', 'true');
@@ -71,7 +75,6 @@ function pauseTimer() {
 // Fonction pour réinitialiser le chronomètre
 function stopTimer() {
   const choixMinutesT = document.getElementById('tempsTravail').value;
-  const choixMinutesP = document.getElementById('tempsPause').value;
 
   clearInterval(timer);
   isRunning = false;
@@ -86,6 +89,12 @@ function stopTimer() {
   // Activer le bouton "Start" et désactiver le bouton "Pause"
   startButton.removeAttribute('disabled');
   pauseButton.setAttribute('disabled', 'true');
+
+  // On repasse en mode travaille quand on reset le timer
+  if(libelleTravail.style.visibility == 'hidden') {
+    libellePause.style.visibility = 'hidden';
+    libelleTravail.style.visibility = 'visible';
+  }
 }
 
 // Fonction pour passer entre le temps de pause et le temps de travail
@@ -93,9 +102,6 @@ function switchTimer() {
 
   const choixMinutesT = document.getElementById('tempsTravail').value;
   const choixMinutesP = document.getElementById('tempsPause').value;
-
-  console.log(choixMinutesT);
-  console.log(choixMinutesP);
 
   if (minutes == 0 && seconds == 0 && libellePause.style.visibility == 'hidden') {
     libelleTravail.style.visibility = 'hidden';
@@ -123,11 +129,8 @@ function changeValue() {
 
   updateTimerDisplay();
 
+  // Alerte l'utilisateur du choix qu'il à fait
   alert(`Choix minutes travail : ${choixMinutesT}\nChoix minutes repos : ${choixMinutesP}`);
-
-  console.log(choixMinutesT);
-  console.log(choixMinutesP);
-  
 
 }
 
