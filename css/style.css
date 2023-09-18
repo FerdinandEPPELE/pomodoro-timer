@@ -32,7 +32,7 @@ h1 {
     margin: auto;
 }
 
-/* Style du textes "Travail" */
+/* Style du texte "Travail" */
 #travail {
     display: inline-block;
     background-color: red;
@@ -88,4 +88,3 @@ button:hover {
     background-color: rgb(71, 202, 160);
     box-shadow: 5px 5px 10px rgb(2, 63, 43);
 }
-
