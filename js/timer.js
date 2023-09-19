@@ -11,7 +11,7 @@ const choixMinutesP = document.getElementById('tempsPause').value;
 // Déclaration des variables
 
 let timer;
-let minutes = 0;
+let minutes = 25;
 let seconds = 0;
 let isRunning = false;
 
@@ -74,13 +74,22 @@ function pauseTimer() {
 
 // Fonction pour réinitialiser le chronomètre
 function stopTimer() {
-  const choixMinutesT = document.getElementById('tempsTravail').value;
+  const choixMinutesT = parseFloat(document.getElementById('tempsTravail').value);
+  const choixMinutesP = parseFloat(document.getElementById('tempsPause').value);
 
-  clearInterval(timer);
-  isRunning = false;
-  minutes = choixMinutesT;
-  seconds = 0;
-  updateTimerDisplay();
+  if(choixMinutesT === "" || !Number.isInteger(choixMinutesT) || !Number.isInteger(choixMinutesP)) {
+    clearInterval(timer);
+    isRunning = false;
+    minutes = 25;
+    seconds = 0;
+    updateTimerDisplay();
+  } else {
+    clearInterval(timer);
+    isRunning = false;
+    minutes = choixMinutesT;
+    seconds = 0;
+    updateTimerDisplay();
+  }
 
   // Réinitialiser le libellé du bouton
   startButton.textContent = "Start";
@@ -122,16 +131,33 @@ function switchTimer() {
 //Fonction pour permettre à l'utilisateur de choisir les minutes de travail et de pause qu'il veut.
 function changeValue() {
 
-  let choixMinutesT = document.getElementById('tempsTravail').value;
-  let choixMinutesP = document.getElementById('tempsPause').value;
+  const choixMinutesT = parseFloat(document.getElementById('tempsTravail').value);
+  const choixMinutesP = parseFloat(document.getElementById('tempsPause').value);
 
-  minutes = choixMinutesT;
+  //Permets de faire en sorte de vérifier en console que les valeurs renseignées dans les champs sont bien des entiers.
+  console.log(Number.isInteger(choixMinutesT));
+  console.log(Number.isInteger(choixMinutesP));
+
+  //Vérifie si les valeurs renseignées dans les champs sont bien des entiers, et sinon, reviens aux valeurs par défaut.
+  if(!Number.isSafeInteger(choixMinutesT) || !Number.isSafeInteger(choixMinutesP)) {
+    alert("Il faut mettre des nombre entiers !");
+    clearInterval(timer);
+    isRunning = false;
+    minutes = 25;
+    seconds = 0;
+    updateTimerDisplay();
+  } else {
+    minutes = choixMinutesT;
+    seconds = 0;
+  }
+
+  //Quand on clique sur le bouton "Envoyer", on revient à une session de travail.
+  if(libelleTravail.style.visibility = 'hidden') {
+    libelleTravail.style.visibility = 'visible';
+    libellePause.style.visibility = 'hidden';
+  }
 
   updateTimerDisplay();
-
-  // Alerte l'utilisateur du choix qu'il à fait
-  alert(`Choix minutes travail : ${choixMinutesT}\nChoix minutes repos : ${choixMinutesP}`);
-
 }
 
 // Écouteurs d'événements pour les boutons
