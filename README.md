@@ -1,2 +1,2 @@
 # pomodoro-timer
-Projet personnel pour la ressource R3.01
+Projet individuel pour la ressource R3.01, dans lequel nous devons créer un timer adapté à la méthode Pomodoro
